@@ -1,0 +1,3 @@
+Here is the link to the repo for exercises 11.01 - 11.19
+
+https://github.com/matcala/full-stack-open-pokedex
