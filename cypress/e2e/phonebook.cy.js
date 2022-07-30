@@ -1,4 +1,4 @@
-describe('Pokedex', function () {
+describe('Phonebook', function () {
 
    beforeEach(function () { cy.visit('http://localhost:3001') })
 
