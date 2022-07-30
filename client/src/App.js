@@ -34,7 +34,7 @@ const App = () => {
    const addPerson = (event) => {
       event.preventDefault()
 
-      // only add if person is not present already 
+      // only add if person is not present already
       const target = persons.find((person) => person.name === newName)
       if (target === undefined) {
          const newPerson = {
@@ -52,7 +52,7 @@ const App = () => {
             })
             //in case the API responds with an error
             .catch(error => {
-               console.log("An error occured while adding the person: ", error)
+               console.log('An error occured while adding the person: ', error)
                setNotificationMessage(error.response.data.error)
                setIsError(true)
                // keep error message for 4s
@@ -69,7 +69,7 @@ const App = () => {
          if (result) {
             const updatedPerson = { ...target, number: newNumber }
             phonebookService.updatePerson(updatedPerson)
-               // person updated successfully 
+               // person updated successfully
                .then(returnedPerson => {
                   setPersons(persons.map(person => person.id !== returnedPerson.id ? person : returnedPerson))
                   setNotificationMessage(`The number for ${returnedPerson.name} has been updated`)
@@ -98,24 +98,24 @@ const App = () => {
                         setNotificationMessage(null)
                         setIsError(false)
                      }, 4000)
-                     console.log(`Something went wrong while updating entry ${updatedPerson}`);
+                     console.log(`Something went wrong while updating entry ${updatedPerson}`)
                   }
                })
          }
       }
-      // flush form after calls 
+      // flush form after calls
       setNewName('')
       setNewNumber('')
    }
 
    const deletePerson = toBeDeleted => {
       phonebookService.deletePerson(toBeDeleted.id)
-         .then(returnedPerson => {
+         .then(() => {
             const result = window.confirm(`Delete ${persons.find(person => person.id === toBeDeleted.id).name}?`)
             if (result)
                setPersons(persons.filter(person => person.id !== toBeDeleted.id))
          })
-         .catch(error => {
+         .catch(() => {
             alert(`Something went wrong while deleting ${toBeDeleted.name}`)
          })
    }

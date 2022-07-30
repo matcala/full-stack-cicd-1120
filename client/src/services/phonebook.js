@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 const baseUrl = '/api/persons'
 
 const getAll = () => {
@@ -23,8 +23,8 @@ const updatePerson = person => {
    return request.then(response => response.data)
 }
 
-const phonebook = { getAll, createPerson, deletePerson, updatePerson };
+const phonebook = { getAll, createPerson, deletePerson, updatePerson }
 
-export default phonebook;
+export default phonebook
 
 
