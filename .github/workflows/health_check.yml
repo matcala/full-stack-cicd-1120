@@ -1,0 +1,14 @@
+name: Periodic health check
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+jobs:
+  healthcheck:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: jtalk/url-health-check-action@v2
+        with:
+          url: https://fullstack-cicd-1120.herokuapp.com/api/info
+          max-attempts: 3 
+          follow-redirect: no
+          retry-delay: 5s

@@ -23,6 +23,8 @@ const updatePerson = person => {
    return request.then(response => response.data)
 }
 
-export default { getAll, createPerson, deletePerson, updatePerson }
+const phonebook = { getAll, createPerson, deletePerson, updatePerson };
+
+export default phonebook;
 
 
