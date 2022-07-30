@@ -66,7 +66,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-  deploy-to-prod:
+  deploy_to_prod:
     needs: [test_e2e]
     if: github.event_name == 'push'
     runs-on: ubuntu-20.04
