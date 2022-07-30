@@ -7,7 +7,7 @@ on:
     branches: [master]
     types: [opened, synchronize]
 jobs:
-  test_and_build:
+  lint_backend:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -18,16 +18,34 @@ jobs:
         run: npm install
       - name: lint
         run: npm run lint
+  lint_frontend:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: npm install
+        run: npm install
+      - name: lint
+        run: npm run lint
+  test_e2e:
+    needs: [lint_backend, lint_frontend]
+    runs-on: ubuntu-20.04
+    steps:
       - name: build ui
         run: npm run build:ui
       - name: e2e tests
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start-prod
-          wait-on: http://localhost:9000
+          start: npm start
+          wait-on: http://localhost:3001
   tag_release:
-    needs: [test_and_build]
+    needs: [test_e2e]
     if: github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message, '#skip')
     runs-on: ubuntu-20.04
     steps:

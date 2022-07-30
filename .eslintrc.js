@@ -7,14 +7,13 @@ module.exports = {
       'cypress/globals': true
    },
    'extends': [
-      'eslint:recommended',
-      'plugin:react/recommended'
+      'eslint:recommended'
    ],
    'parserOptions': {
       'ecmaVersion': 12
    },
    'plugins': [
-      'react', 'cypress'
+      'cypress'
    ],
    'rules': {
       'indent': [
@@ -41,7 +40,6 @@ module.exports = {
       'arrow-spacing': [
          'error', { 'before': true, 'after': true }
       ],
-      'no-console': 0,
-      'react/prop-types': 0
+      'no-console': 0
    }
 }
