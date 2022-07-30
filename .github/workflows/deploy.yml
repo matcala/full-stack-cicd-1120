@@ -1,0 +1,20 @@
+name: Deploy to Heroku
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy-to-prod:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "fullstack-cicd-1120"
+          heroku_email: "matteo.calabrese1@gmail.com"
+          #healthcheck: "https://fullstack-cicd-pokedex.herokuapp.com/health"
+          #checkstring: "ok"
+          #delay: 5
+          #rollbackonhealthcheckfailed: true
